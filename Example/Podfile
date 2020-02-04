@@ -1,0 +1,6 @@
+use_frameworks!
+target 'NearX_iOS_Tests' do
+  pod 'NearX_iOS', :path => '../'
+  
+  
+end
