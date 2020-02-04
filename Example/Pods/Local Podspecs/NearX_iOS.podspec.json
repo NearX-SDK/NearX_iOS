@@ -1,0 +1,42 @@
+{
+  "name": "NearX_iOS",
+  "version": "0.1.0",
+  "summary": "Geo-fencing library",
+  "description": "Use this library for implementing Geo-fences",
+  "homepage": "https://getwalk.in/",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kushS21": "kushagra@getwalk.in"
+  },
+  "source": {
+    "git": "https://github.com/kushS21/NearX_iOS.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": [
+    "NearX_iOS",
+    "Classes/**/*.swift"
+  ],
+  "exclude_files": "Constrictor/Constrictor/*.plist",
+  "swift_versions": "4.2",
+  "dependencies": {
+    "Alamofire": [
+
+    ],
+    "AlamofireObjectMapper": [
+
+    ],
+    "ObjectMapper": [
+      "3.3"
+    ],
+    "SwiftyJSON": [
+      "~> 4.2.0"
+    ]
+  },
+  "swift_version": "4.2"
+}
