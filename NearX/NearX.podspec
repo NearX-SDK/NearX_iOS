@@ -12,10 +12,10 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NearX"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.3"
   spec.summary      = "Geolocation service based library"
   spec.description  = "Walkin's product to integrate with your apps for getting location based services for retail marketplace."
-  spec.homepage     = "https://github.com/kushS21/NearX-Framework.git"
+  spec.homepage     = "https://github.com/NearX-SDK/NearX_iOS.git"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -44,7 +44,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/kushS21/NearX-Framework.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/NearX-SDK/NearX_iOS.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
