@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NearX"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.3"
   spec.summary      = "Geolocation service based library"
   spec.description  = "Walkin's product to integrate with your apps for getting location based services for retail marketplace."
   spec.homepage     = "https://github.com/NearX-SDK/NearX_iOS.git"
@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.license      = "MIT"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  spec.license      = { :type => "MIT", :file => "LICENSE" }
 
   # ―――  Spec Author  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -101,8 +101,8 @@ Pod::Spec.new do |spec|
 
   spec.frameworks = 'UIKit', 'CoreLocation'
   spec.dependency 'Alamofire'
-  spec.dependency 'AlamofireObjectMapper'
-  spec.dependency 'ObjectMapper'
+  #spec.dependency 'AlamofireObjectMapper'
+  #spec.dependency 'ObjectMapper'
   spec.dependency 'SwiftyJSON'
 
 

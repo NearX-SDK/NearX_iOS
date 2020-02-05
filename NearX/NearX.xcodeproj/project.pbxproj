@@ -44,7 +44,6 @@
 				D72F4A42EBE19617517C42CF /* Pods-NearX.debug.xcconfig */,
 				267437D6BC430D4973969C90 /* Pods-NearX.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -130,7 +129,7 @@
 				TargetAttributes = {
 					A5C8E61923EA7CD900668EC1 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -140,6 +139,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = A5C8E61023EA7CD900668EC1;
 			productRefGroup = A5C8E61B23EA7CD900668EC1 /* Products */;
@@ -346,7 +346,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -374,7 +374,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = in.walkin.nearx.ios.NearX;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
