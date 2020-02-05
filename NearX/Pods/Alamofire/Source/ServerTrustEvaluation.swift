@@ -104,10 +104,10 @@ public final class DefaultTrustEvaluator: ServerTrustEvaluating {
 
     public func evaluate(_ trust: SecTrust, forHost host: String) throws {
         if validateHost {
-            // try trust.self(forHost: host)
+            try trust.af.performValidation(forHost: host)
         }
 
-//        try trust.self(forHost: host)
+        try trust.af.performDefaultValidation(forHost: host)
     }
 }
 

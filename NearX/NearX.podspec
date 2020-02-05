@@ -15,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.version      = "1.0.0"
   spec.summary      = "Geolocation service based library"
   spec.description  = "Walkin's product to integrate with your apps for getting location based services for retail marketplace."
-  spec.homepage     = "https://github.com/NearX-SDK/NearX_iOS.git"
+  spec.homepage     = "https://github.com/kushS21/NearX-Framework.git"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -23,7 +23,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.license      = "MIT"
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  spec.license      = { :type => "MIT", :file => "LICENSE" }
 
   # ―――  Spec Author  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
@@ -44,7 +44,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/NearX-SDK/NearX_iOS.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/kushS21/NearX-Framework.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -101,8 +101,8 @@ Pod::Spec.new do |spec|
 
   spec.frameworks = 'UIKit', 'CoreLocation'
   spec.dependency 'Alamofire'
-  spec.dependency 'AlamofireObjectMapper'
-  spec.dependency 'ObjectMapper'
+  #spec.dependency 'AlamofireObjectMapper'
+  #spec.dependency 'ObjectMapper'
   spec.dependency 'SwiftyJSON'
 
 

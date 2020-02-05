@@ -53,13 +53,13 @@ public class GeofenceUtils{
             .validate()
 //            .debugLog()
             .responseJSON { response in
-                print(response)
-//                let result = response
-//                guard result.isSuccess else {
-//                    print(response)
-//                    print("Error while receiving data")
-//                    return
-//                }
+            switch response.result
+            {
+                case .success(let value):
+                    print("Geofence Success : ",value)
+                case .failure(let error):
+                    print("Error while recieving data : ",error)
+            }
         }
     }
     
