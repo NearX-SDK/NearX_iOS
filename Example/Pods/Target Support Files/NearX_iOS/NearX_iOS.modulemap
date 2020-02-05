@@ -1,6 +1,0 @@
-framework module NearX_iOS {
-  umbrella header "NearX_iOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
