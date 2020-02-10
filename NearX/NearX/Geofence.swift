@@ -25,7 +25,7 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         
         let name = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.NAME)!
         let mobileNumber = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
-        let fcmToken = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.FCM_TOKEN)!
+//        let fcmToken = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.FCM_TOKEN)!
         
         print("Allows background location updates")
         
@@ -34,8 +34,8 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         print(name)
         print("mobile")
         print(mobileNumber)
-        print("FCM")
-        print(fcmToken)
+//        print("FCM")
+//        print(fcmToken)
         
     }
     
