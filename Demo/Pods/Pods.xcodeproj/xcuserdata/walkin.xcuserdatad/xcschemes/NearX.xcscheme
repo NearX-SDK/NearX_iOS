@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6BB9BE23F2635917EB614DA2BF7FE9"
-               BuildableName = "Pods-NearX.framework"
-               BlueprintName = "Pods-NearX"
+               BlueprintIdentifier = "7CF3B593281B25A3E13BADE726AB4A18"
+               BuildableName = "libNearX.a"
+               BlueprintName = "NearX"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
