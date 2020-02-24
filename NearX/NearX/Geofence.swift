@@ -163,6 +163,17 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         }
     }
     
+    // Handling geofence entry/exit events
+    func handleEvent(forRegion region: CLRegion! , event : String) {
+        
+        print("")
+        print(" ---  Geofence Tracked ---")
+        print("")
+        print("Geofence Tracked on \(event) : ",region!)
+        print("")
+        GeofenceUtils.sendGeofenceEvent(eventType: event, locationName: region.identifier)
+    }
+    
     // Format data for adding Geofence found while monitoring
     func addGeofence(data: locationData){
         let formatter = NumberFormatter()
@@ -232,5 +243,19 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     public func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
         print("Location error: \(error!)")
     }
+    
+    // called when user Exits a monitored region
+    public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+           if region is CLCircularRegion {
+               self.handleEvent(forRegion: region , event: "geofenceExit")
+           }
+       }
+       
+       // called when user Enters a monitored region
+    public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+           if region is CLCircularRegion {
+            self.handleEvent(forRegion: region , event: "geofenceEntry")
+           }
+       }
     
 }
