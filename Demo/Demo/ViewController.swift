@@ -9,15 +9,16 @@
 import UIKit
 import NearX
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate , UITextViewDelegate {
     
     let geofence: Geofence = Geofence()
         
-    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var userMobile: UITextField!
     @IBOutlet weak var userKey: UITextView!
     @IBOutlet weak var submitBrn: UIButton!
-    
+    @IBOutlet weak var userName: UITextField!
     
     @IBAction func backPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -49,6 +50,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userName.delegate = self
+        userMobile.delegate = self
+        userKey.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
+        return true
     }
     
     override func viewDidAppear(_ animated: Bool) {

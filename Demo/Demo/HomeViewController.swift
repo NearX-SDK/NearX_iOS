@@ -79,7 +79,7 @@ class HomeViewController : UIViewController, UITableViewDataSource , UITableView
     }
     
     func showRegisterAlert() {
-        let alert = UIAlertController(title: "Register!", message: "You need to register firat to see the Geofences.",         preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Register!", message: "You need to register first to see the Geofences.",         preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: {(_: UIAlertAction!) in
             
