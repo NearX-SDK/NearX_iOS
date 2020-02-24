@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 import CoreLocation
 
 public class Geofence:NSObject,CLLocationManagerDelegate{
@@ -18,143 +16,174 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     
     public func initializeGeofences(){
         
-        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        locationManager.stopUpdatingLocation()
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+//        locationManager.stopUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .notDetermined, .restricted, .denied:
+                        print("No Location access provided")
+                        locationManager.requestAlwaysAuthorization()
+                case .authorizedAlways, .authorizedWhenInUse:
+                        print("Access")
+                default:
+                        print("")
+            }
+        } else {
+            print("Location services are not enabled")
+            locationManager.requestAlwaysAuthorization()
+        }
+        
         locationManager.startUpdatingLocation()
         
         let name = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.NAME)!
         let mobileNumber = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
-//        let fcmToken = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.FCM_TOKEN)!
         
-        print("Allows background location updates")
-        
-        print("initializeGeofences")
-        print("name")
-        print(name)
-        print("mobile")
-        print(mobileNumber)
-//        print("FCM")
-//        print(fcmToken)
+        print("Data Recieved by SDK.")
+        print("Name : \(name) | Mobile Number : \(mobileNumber)")
         
     }
     
+    public func displayGeofences() -> [String]
+    {
+        var totalFences : [String] = []
+        print("")
+        print("----------- GEOFENCES -----------")
+        print("")
+        for monitoredGeofence in locationManager.monitoredRegions {
+            
+            print(monitoredGeofence.identifier)
+            totalFences.append(monitoredGeofence.identifier)
+            
+        }
+        print("")
+        print("---------------------------------")
+        return totalFences
+    }
     
     func getGeofencesAndRegister(latitude:String,longitude:String){
-        let location = ["latitude": latitude,
-                        "longitude": longitude]
-        
-        let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
-        let headers : HTTPHeaders = [
-            "Content-Type": "application/json",
-            "token": authKey
+        let location = [
+            "latitude": latitude,
+            "longitude": longitude
         ]
-        
+        let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
         let getgeofenceURL = Constants.GEOFENCE_URL +
             "latitude=\(location["latitude"]!)&longitude=\(location["longitude"]!)&within=1000000&limit=20"
         
-        AF.request(getgeofenceURL, method: .get, headers:headers)
-            .validate()
-//            .debugLog()
-            
-            .responseJSON { response in
-                switch response.result
-                {
-                    case .success(let value):
-                        let jsonResponse = JSON(value)
-                        self.onCompleteGetGeofences(value: jsonResponse)
-                    case .failure(let error):
-                        print(error)
-                }
-//                print(response)
-//                guard response.result.isSuccess else {
-//                    print(response)
-//                    print("Error while receiving data")
-//                    return
-//                }
-                
-//                let value = response.result.value
-//                let jsonResponse = JSON(value!)
-//                self.onCompleteGetGeofences(value: jsonResponse)
-                
-                
-        }
+        let session = URLSession.shared
+        let url = URL(string: getgeofenceURL)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(authKey, forHTTPHeaderField: "token")
         
+        let task = session.dataTask(with: request) { data, response, error in
 
-//        AF.request("\(url)\(path)").responseData {
-//            response in switch response.result { case .success(let value): print(String(data: value, encoding: .utf8)!) completion(try? SomeRequest(protobuf: value)) case .failure(let error): print(error) completion(nil) }
-//
-//        }
+            if error != nil || data == nil {
+                print("Client error!")
+                return
+            }
+
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+
+            do {
+//                let json = try JSONSerialization.jsonObject(with: data!, options: [])
+                let decodedResponse = try JSONDecoder().decode(Response.self, from: data!)
+                self.setGeofenceValues(decodedResponse.locations)
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
+
+        task.resume()
     }
     
-    func onCompleteGetGeofences(value:JSON){
-        print("onCompleteGetGeofences")
-        let locations = value["locations"]
-        self.setGeofenceValues(locations)
-    }
     
+    func setGeofenceValues(_ geofences: [locationData]) {
+        print("")
+        print(" ---  setGeofenceValues ---")
+        print("")
+        calculateAndRemoveGeofences(geofences)
+        calculateAndAddGeofences(geofences)
+    }
     
     
     //Remove all geofences that are present in monitoredRegions and not present in new regions(got from API)
-    func calculateAndRemoveGeofences(_ geofences: JSON){
-        print("getGeofencesToBeRemoved")
+    func calculateAndRemoveGeofences(_ geofences: [locationData]){
+        print("")
+        print(" ---  getGeofencesToBeRemoved ---")
+        print("")
         var found = false;
         for monitoredGeofence in locationManager.monitoredRegions {
             found = false;
-            for (_, newGeofence) in geofences {
-                if (monitoredGeofence.identifier == newGeofence["canonicalName"].stringValue){
+            for newGeoFence in geofences {
+                if (monitoredGeofence.identifier == newGeoFence.canonicalName){
                     found = true
                 }
             }
             if(!found){
                 //That means that geofence exists in monitored and not in new regions
                 //We should remove it
-                print("Removing ---", monitoredGeofence.identifier)
+                print("Removing : ", monitoredGeofence.identifier)
                 locationManager.stopMonitoring(for: monitoredGeofence)
             }
         }
     }
     
     //Add all geofences that are present in new regions(got from API) and not already present in monitored regions
-    func calculateAndAddGeofences(_ geofences: JSON){
-        print("calculateAndAddGeofences")
+    func calculateAndAddGeofences(_ geofences: [locationData]){
+        print("")
+        print(" ---  calculateAndAddGeofences ---")
+        print("")
         var found = false;
-        for (_, newGeofence) in geofences {
+        for newGeofence in geofences {
             found = false;
             for monitoredGeofence in locationManager.monitoredRegions {
-                if(newGeofence["canonicalName"].stringValue == monitoredGeofence.identifier){
+                if(newGeofence.canonicalName == monitoredGeofence.identifier){
                     found = true
                 }
             }
             if(!found){
                 //That means that geofences exist in JSON and not in monitored
-                //We should all these geofences
+                //We should add this geofence
                 addGeofence(data: newGeofence)
             }
         }
     }
     
-    func addGeofence(data: JSON){
+    // Format data for adding Geofence found while monitoring
+    func addGeofence(data: locationData){
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal;
         
-        let lat = formatter.number(from:data["latitude"].stringValue)!
-        let long = formatter.number(from:data["longitude"].stringValue)!
-        let radius = Int(data["radius"].stringValue)!
-        let geofenceId = data["canonicalName"].stringValue
-        print("Adding ---", data["canonicalName"].stringValue)
+        let lat = formatter.number(from:String(format:"%.1f",data.latitude))!
+        let long = formatter.number(from:String(format:"%.1f",data.longitude))!
+        let radius = data.radius
+        let geofenceId = data.canonicalName
+        
+        print("Adding GeoFence : ", data.canonicalName)
         setGeofence(latitude: lat.floatValue , longitude: long.floatValue, radius: radius, id: geofenceId)
     }
     
-    func setGeofenceValues(_ geofences: JSON) {
-        print("setGeofenceValues")
-        calculateAndRemoveGeofences(geofences)
-        calculateAndAddGeofences(geofences)
-    }
-    
+    // Add Geofence in the region
     func setGeofence(latitude: Float, longitude: Float, radius: Int, id: String) {
-        print("setGeofence")
+        print("")
+        print(" ---  setGeofence ---")
+        print("")
         print("Setting geofence " + id)
+        print("")
         let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude)), radius: CLLocationDistance(radius), identifier: id)
         geoRegion.notifyOnExit = true
         geoRegion.notifyOnEntry = true
@@ -163,7 +192,9 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     
     
     public func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("")
         print("Monitoring failed for region with identifier: \(region!.identifier) \(error)")
+        print("")
     }
     
     
@@ -177,8 +208,9 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
             }
             locationManager.startUpdatingLocation()
         case .denied:
-            
+
             print("Location error: Permission not given")
+            locationManager.requestAlwaysAuthorization()
         default:
             break
         }
@@ -188,25 +220,17 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         print("Location error didFailWithError: \(error)")
     }
     
+    
+    // Provides all incoming location data from device sensors
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let objLocation = locations[0]
         print("Location: \(objLocation)")
         getGeofencesAndRegister(latitude: "\(objLocation.coordinate.latitude)", longitude: "\(objLocation.coordinate.longitude)")
     }
     
+    // Deferred Location error
     public func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
         print("Location error: \(error!)")
     }
     
-    
-}
-
-
-extension Request {
-    public func debugLog() -> Self {
-        #if DEBUG
-        debugPrint(self)
-        #endif
-        return self
-    }
 }

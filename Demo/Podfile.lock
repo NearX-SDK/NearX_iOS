@@ -1,26 +1,15 @@
 PODS:
-  - Alamofire (5.0.0-rc.2)
-  - NearX (1.0.5):
-    - Alamofire (= 5.0.0-rc.2)
-    - SwiftyJSON (= 5.0.0)
-  - SwiftyJSON (5.0.0)
+  - NearX (1.0.0)
 
 DEPENDENCIES:
   - NearX (from `../NearX`)
-
-SPEC REPOS:
-  trunk:
-    - Alamofire
-    - SwiftyJSON
 
 EXTERNAL SOURCES:
   NearX:
     :path: "../NearX"
 
 SPEC CHECKSUMS:
-  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
-  NearX: 14690c210e4832630fcd792d1ff1914eed347552
-  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  NearX: e9c7e2c3d978b0c354ee05d1860c71c44cf8afa0
 
 PODFILE CHECKSUM: 1c892b6976fc50e0836014eeae227d33133eba28
 

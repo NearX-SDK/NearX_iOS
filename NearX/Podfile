@@ -7,9 +7,9 @@ target 'NearX' do
 
   # Pods for NearX
 
-  pod 'Alamofire' , '5.0.0-rc.2'
-  pod 'SwiftyJSON', '5.0.0'
 
+  # pod 'Alamofire' , '5.0.0-rc.2'
+  # pod 'SwiftyJSON'
 
   #  pod 'ObjectMapper'
   #  pod 'AlamofireObjectMapper'

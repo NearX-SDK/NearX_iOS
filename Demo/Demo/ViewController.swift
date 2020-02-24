@@ -12,21 +12,19 @@ import NearX
 class ViewController: UIViewController {
     
     let geofence: Geofence = Geofence()
-    
-    // Provide your auth key
-    let AUTH_KEY = "";
-    
-    
+        
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userMobile: UITextField!
     @IBOutlet weak var userKey: UITextView!
     @IBOutlet weak var submitBrn: UIButton!
     
+    
+    @IBAction func backPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func onUserSubmit(_ sender: Any) {
-        
-        print("UserName : ",userName.text!)
-        print("Mobile Number : ",userMobile.text!)
-        print("Api Key : ",userKey.text! )
         
         if((userName.text!).isEmpty)
         {
@@ -43,25 +41,40 @@ class ViewController: UIViewController {
             showAlert(withTitle: "Error", message: "Please provide your api key!")
             return
         }
-        
+
         startTracking(user: userName.text!, number: userMobile.text!, apiKey: userKey.text!)
-        
+                
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Demo App ready!")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Form Ready!")
+        if(UserDefaults.standard.object(forKey: Constants.PreferencesKeys.AUTH_KEY) != nil)
+        {
+            userKey.text = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
+        }
+        if(UserDefaults.standard.object(forKey: Constants.PreferencesKeys.NAME) != nil)
+        {
+            userName.text = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.NAME)!
+        }
+        if(UserDefaults.standard.object(forKey: Constants.PreferencesKeys.MOBILE_NUMBER) != nil)
+        {
+            userMobile.text = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
+        }
     }
     
     func startTracking(user : String , number : String , apiKey : String)
     {
         GeofenceUtils.setName(name: user)
         GeofenceUtils.setMobileNumber(mobileNumber: number)
-//        GeofenceUtils.setFCMToken(fcmToken: token)
         GeofenceUtils.setAuthKey(authKey: apiKey)
         
         geofence.initializeGeofences()
-        showAlert(withTitle: "Success!", message: "Geofences monitoring initiated")
+        showTrackingAlert()
     }
     
     func showAlert(withTitle title: String?, message: String?) {
@@ -70,7 +83,16 @@ class ViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-
+    
+    func showTrackingAlert() {
+        let alert = UIAlertController(title: "Success!", message: "Geofences monitoring initiated",preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: {(_: UIAlertAction!) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
 

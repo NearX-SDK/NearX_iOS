@@ -32,3 +32,72 @@ struct Constants {
     }
     
 }
+
+// Struct to easily encode/decode locationData being recieved via api call
+
+struct locationData : Codable {
+        
+        let id : String
+        let canonicalName : String
+        let latitude : Double
+        let longitude : Double
+        let radius : Int
+        let locationName : String
+        
+        enum CodingKeys: String, CodingKey {
+            case id = "id"
+            case canonicalName = "canonicalName"
+            case latitude = "latitude"
+            case longitude = "longitude"
+            case radius = "radius"
+            case locationName = "locationName"
+        }
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.id = try container.decode(String.self, forKey: .id)
+            self.canonicalName = try container.decode(String.self, forKey: .canonicalName)
+            self.latitude = try container.decode(Double.self, forKey: .latitude)
+            self.longitude = try container.decode(Double.self, forKey: .longitude)
+            self.radius = try container.decode(Int.self, forKey: .radius)
+            self.locationName = try container.decode(String.self, forKey: .locationName)
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(self.id, forKey: .id)
+            try container.encode(self.canonicalName, forKey: .canonicalName)
+            try container.encode(self.latitude, forKey: .latitude)
+            try container.encode(self.longitude, forKey: .longitude)
+            try container.encode(self.radius, forKey: .radius)
+            try container.encode(self.locationName, forKey: .locationName)
+        }
+    }
+
+//    Struct to easily encode/decode api response for geofence data
+    
+    struct Response: Codable {
+        
+        let totalGeofences: Int
+        let locations: [locationData]
+        
+        enum CodingKeys: String, CodingKey {
+            case response = "Response"
+            case totalGeofences = "totalGeofences"
+            case locations = "locations"
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+//            let response = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
+            self.totalGeofences = try container.decode(Int.self, forKey: .totalGeofences)
+            self.locations = try container.decode([locationData].self, forKey: .locations)
+        }
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+//            var response = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .response)
+            try container.encode(self.totalGeofences, forKey: .totalGeofences)
+            try container.encode(self.locations, forKey: .locations)
+        }
+    }
