@@ -37,13 +37,20 @@ class HomeViewController : UIViewController, UITableViewDataSource , UITableView
         {
             totalFenceData = geofence.displayGeofences() as [String]
             tableView.reloadData()
-            headerTitle.text = "Available Geofences : "
             
         }
         else
         {
-            headerTitle.text = "No Geofence available"
             showRegisterAlert()
+        }
+        
+        if(totalFenceData.count > 0)
+        {
+            headerTitle.text = "Available Geofences : "
+        }
+        else
+        {
+            headerTitle.text = "No Geofence available"
         }
     }
     
@@ -54,13 +61,20 @@ class HomeViewController : UIViewController, UITableViewDataSource , UITableView
         {
             geofence.initializeGeofences()
             totalFenceData = geofence.displayGeofences() as [String]
-            headerTitle.text = "Available Geofences : "
             tableView.reloadData()
         }
         else
         {
-            headerTitle.text = "No Geofence available"
             showRegisterAlert()
+        }
+        
+        if(totalFenceData.count > 0)
+        {
+            headerTitle.text = "Available Geofences : "
+        }
+        else
+        {
+            headerTitle.text = "No Geofence available"
         }
     }
     
