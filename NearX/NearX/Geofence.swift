@@ -12,7 +12,18 @@ import CoreLocation
 public class Geofence:NSObject,CLLocationManagerDelegate{
     
     private var locationManager =  CLLocationManager()
+    private var totalFences : Int = 0
     
+    private func addFenceCount()
+    {
+        totalFences = totalFences + 1
+    }
+    
+    public func getFenceCount() -> Int
+    {
+        let count = totalFences
+        return count
+    }
     
     public func initializeGeofences(){
         
@@ -39,36 +50,21 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         }
         
         locationManager.startUpdatingLocation()
-        
-        let name = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.NAME)!
-        let mobileNumber = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
-        
-        print("Data Recieved by SDK.")
-        print("Name : \(name) | Mobile Number : \(mobileNumber)")
-        
     }
     
     public func displayGeofences() -> [String]
     {
         var totalFences : [String] = []
-        print("")
-        print("----------- GEOFENCES -----------")
-        print("")
         for monitoredGeofence in locationManager.monitoredRegions {
-            
-            print(monitoredGeofence.identifier)
             totalFences.append(monitoredGeofence.identifier)
-            
         }
-        print("")
-        print("---------------------------------")
         return totalFences
     }
     
-    func getGeofencesAndRegister(latitude:String,longitude:String){
+    func getGeofencesAndRegister(coord : CLLocationCoordinate2D){
         let location = [
-            "latitude": latitude,
-            "longitude": longitude
+            "latitude": "\(coord.latitude)",
+            "longitude": "\(coord.longitude)"
         ]
         let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
         let getgeofenceURL = Constants.GEOFENCE_URL +
@@ -112,9 +108,6 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     
     
     func setGeofenceValues(_ geofences: [locationData]) {
-        print("")
-        print(" ---  setGeofenceValues ---")
-        print("")
         calculateAndRemoveGeofences(geofences)
         calculateAndAddGeofences(geofences)
     }
@@ -122,9 +115,7 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     
     //Remove all geofences that are present in monitoredRegions and not present in new regions(got from API)
     func calculateAndRemoveGeofences(_ geofences: [locationData]){
-        print("")
-        print(" ---  getGeofencesToBeRemoved ---")
-        print("")
+        print(" ---  Unlisted Geofences Removed  ---")
         var found = false;
         for monitoredGeofence in locationManager.monitoredRegions {
             found = false;
@@ -144,9 +135,7 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     
     //Add all geofences that are present in new regions(got from API) and not already present in monitored regions
     func calculateAndAddGeofences(_ geofences: [locationData]){
-        print("")
-        print(" ---  calculateAndAddGeofences ---")
-        print("")
+        print(" ---  Calculate And Add Newly Listed Geofences ---")
         var found = false;
         for newGeofence in geofences {
             found = false;
@@ -171,31 +160,26 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
         print("")
         print("Geofence Tracked on \(event) : ",region!)
         print("")
+        addFenceCount()
         GeofenceUtils.sendGeofenceEvent(eventType: event, locationName: region.identifier)
     }
     
     // Format data for adding Geofence found while monitoring
     func addGeofence(data: locationData){
-        let formatter = NumberFormatter()
-        formatter.numberStyle = NumberFormatter.Style.decimal;
         
-        let lat = formatter.number(from:String(format:"%.1f",data.latitude))!
-        let long = formatter.number(from:String(format:"%.1f",data.longitude))!
+        let lat = CLLocationDegrees(data.latitude)
+        let long = CLLocationDegrees(data.longitude)
         let radius = data.radius
         let geofenceId = data.canonicalName
         
         print("Adding GeoFence : ", data.canonicalName)
-        setGeofence(latitude: lat.floatValue , longitude: long.floatValue, radius: radius, id: geofenceId)
+        setGeofence(latitude: lat , longitude: long, radius: radius, id: geofenceId)
     }
     
     // Add Geofence in the region
-    func setGeofence(latitude: Float, longitude: Float, radius: Int, id: String) {
-        print("")
+    func setGeofence(latitude: CLLocationDegrees, longitude: CLLocationDegrees, radius: Int, id: String) {
         print(" ---  setGeofence ---")
-        print("")
-        print("Setting geofence " + id)
-        print("")
-        let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude)), radius: CLLocationDistance(radius), identifier: id)
+        let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), radius: CLLocationDistance(radius), identifier: id)
         geoRegion.notifyOnExit = true
         geoRegion.notifyOnEntry = true
         locationManager.startMonitoring(for: geoRegion)
@@ -235,8 +219,8 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     // Provides all incoming location data from device sensors
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let objLocation = locations[0]
-        print("Location: \(objLocation)")
-        getGeofencesAndRegister(latitude: "\(objLocation.coordinate.latitude)", longitude: "\(objLocation.coordinate.longitude)")
+        print("Location: \(objLocation.coordinate.latitude)  |  \(objLocation.coordinate.longitude)")
+        getGeofencesAndRegister(coord : objLocation.coordinate)
     }
     
     // Deferred Location error
@@ -247,14 +231,14 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
     // called when user Exits a monitored region
     public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
            if region is CLCircularRegion {
-               self.handleEvent(forRegion: region , event: "geofenceExit")
+               self.handleEvent(forRegion: region , event: "GEOFENCE_EXIT")
            }
        }
        
        // called when user Enters a monitored region
     public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
            if region is CLCircularRegion {
-            self.handleEvent(forRegion: region , event: "geofenceEntry")
+            self.handleEvent(forRegion: region , event: "GEOFENCE_ENTRY")
            }
        }
     

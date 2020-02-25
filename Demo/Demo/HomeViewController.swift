@@ -68,14 +68,17 @@ class HomeViewController : UIViewController, UITableViewDataSource , UITableView
             showRegisterAlert()
         }
         
-        if(totalFenceData.count > 0)
-        {
-            headerTitle.text = "Available Geofences : "
-        }
-        else
-        {
-            headerTitle.text = "No Geofence available"
-        }
+        let count = geofence.getFenceCount()
+        headerTitle.text = "Events : \(count)"
+        
+//        if(totalFenceData.count > 0)
+//        {
+//            headerTitle.text = "Available Geofences : "
+//        }
+//        else
+//        {
+//            headerTitle.text = "No Geofence available"
+//        }
     }
     
     func showRegisterAlert() {

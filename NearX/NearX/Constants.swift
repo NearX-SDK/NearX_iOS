@@ -101,3 +101,26 @@ struct locationData : Codable {
             try container.encode(self.locations, forKey: .locations)
         }
     }
+
+    struct EventData: Codable {
+        
+        let eventType: String
+        let locationNames: [String]
+        let mobileNumber : String
+        
+        enum CodingKeys: String, CodingKey {
+            case eventType = "eventType"
+            case locationNames = "locationNames"
+            case mobileNumber = "mobileNumber"
+        }
+    }
+
+    struct Payload : Codable {
+        let authKey: String
+        var eventData: EventData
+        
+//        enum CodingKeys: String, CodingKey {
+//            case authKey = "authKey"
+//            case eventData = "eventData"
+//        }
+    }

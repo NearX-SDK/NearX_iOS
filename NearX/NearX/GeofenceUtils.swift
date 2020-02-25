@@ -30,9 +30,7 @@ public class GeofenceUtils{
     
     public static func sendGeofenceEvent(eventType:String,locationName:String){
         
-                print("")
                 print(" ---  sendGeofenceEvent ---")
-                print("")
                 let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
                 let mobileNumber = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
 
@@ -45,44 +43,63 @@ public class GeofenceUtils{
                 let payload = [
                     "authKey":authKey,
                     "eventData": eventData
-                ] as! [String : String]
+                ] as [String : Any]
 
+                let events = EventData(eventType: eventType, locationNames: [locationName], mobileNumber: mobileNumber)
+                let payloadJSON = Payload(authKey: authKey, eventData: events)
 
-                let requestData = try! JSONSerialization.data(withJSONObject: payload, options: [])
-                let session = URLSession.shared
-                let url = URL(string: Constants.EVENT_URL)!
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.setValue(authKey, forHTTPHeaderField: "token")
-                
-                let task = session.uploadTask(with: request , from: requestData) { data, response, error in
+                let encoder = JSONEncoder()
+                encoder.outputFormatting = .prettyPrinted
 
-                    if error != nil || data == nil {
-                        print("Client error!")
-                        return
+                do {
+                    let jsonData = try encoder.encode(payloadJSON)
+
+                    if let payloadValue = String(data: jsonData, encoding: .utf8) {
+                        print("Geofence Event Payload : ",payloadValue)
+                        
+                        let requestData = try! JSONSerialization.data(withJSONObject: payload, options: [])
+                        let session = URLSession.shared
+                        let url = URL(string: Constants.EVENT_URL)!
+                        var request = URLRequest(url: url)
+                        request.httpMethod = "POST"
+                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                        request.setValue(authKey, forHTTPHeaderField: "token")
+
+                        let task = session.uploadTask(with: request , from: requestData) { data, response, error in
+
+                            if error != nil || data == nil {
+                                    print("Client error!")
+                                    return
+                            }
+
+                            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                                    print("Server error!")
+                                    return
+                            }
+
+                            guard let mime = response.mimeType, mime == "application/json" else {
+                                    print("Wrong MIME type!")
+                                    return
+                            }
+
+                            do {
+                                    print("Geofence Event Success")
+                                    let responseData = try JSONSerialization.jsonObject(with: data!, options: [])
+                                    print("Event Response Data : ",responseData)
+                                }
+                            catch {
+                                    print("JSON error: \(error.localizedDescription)")
+                                }
+                        }
+
+                        task.resume()
+
                     }
-
-                    guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                        print("Server error!")
-                        return
-                    }
-
-                    guard let mime = response.mimeType, mime == "application/json" else {
-                        print("Wrong MIME type!")
-                        return
-                    }
-
-                    do {
-                        print("Geofence Event Success")
-                        let responseData = try JSONSerialization.jsonObject(with: data!, options: [])
-                        print("Event Response Data : ",responseData)
-                    } catch {
-                        print("JSON error: \(error.localizedDescription)")
-                    }
+                } catch {
+                    print(error.localizedDescription)
                 }
+        
 
-                task.resume()
     }
     
     
