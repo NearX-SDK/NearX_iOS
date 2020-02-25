@@ -11,7 +11,6 @@
 #endif
 
 #import "NearX.h"
-#import "Pods-NearX-umbrella.h"
 
 FOUNDATION_EXPORT double NearXVersionNumber;
 FOUNDATION_EXPORT const unsigned char NearXVersionString[];

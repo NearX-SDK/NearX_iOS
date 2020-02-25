@@ -9,14 +9,12 @@
 /* Begin PBXBuildFile section */
 		1130B494E17091DEFDCCF4E4223DF532 /* Pods-Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C7CFA754B92660A49BA14A6F869F74 /* Pods-Demo-dummy.m */; };
 		1BAB8A2AB363B2C22D8B4BA96443B127 /* Pods-Demo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A5A20A2CA969264A7F9DE44AB57DD11 /* Pods-Demo-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6FFC1E23DAB892692B4488884DCE1B10 /* Pods-NearX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A46E86B1BF65A1123C0993261F110C3 /* Pods-NearX-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		77F3DBEF97BDFD478B8370A6F28B2041 /* NearX.h in Headers */ = {isa = PBXBuildFile; fileRef = F4E94A4821213ECBF080CA1AB0C6D7EF /* NearX.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8167AAC5614B284C06B31FF808F8ECA3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6476C6F857107F063E01BD1C23F279 /* Constants.swift */; };
-		91620D7F372BF8F979FF99509C43624B /* Pods-NearX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5A172AC7A5CFA47D981C0E910554C6 /* Pods-NearX-dummy.m */; };
-		A8FFB2CAA53E83D4FCFDA790D43FA373 /* NearX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9880899A3D1F400B59AF666CEDAB6EBC /* NearX-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B027DDAF685C04868287E9CAFF3A7CDA /* GeofenceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5CADECC1C196A71F7AAD63A8F12DD /* GeofenceUtils.swift */; };
-		D13E874FD991AC7722ABD19B93DD551C /* Geofence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF627DBDC8E6891A814FD97DBBAEA32 /* Geofence.swift */; };
-		EF7511243EB38EC3806C0E6375ADCF8F /* NearX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 112FBB7D3638E323F308ABD56DE65381 /* NearX-dummy.m */; };
+		282CF8307248850445D0DB362A68EC37 /* GeofenceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5A846101E4A5B346D7E598557C98FE /* GeofenceUtils.swift */; };
+		D2894E5FF6C597074D1937D6267D13D7 /* NearX.h in Headers */ = {isa = PBXBuildFile; fileRef = C326874871668B2DA1F6F29716A7D9D0 /* NearX.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D3AAF0C6CDDC2BE47F3AFAFE2E292691 /* NearX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8B8BDD6843A9968FE1CC45F3B1ED9F /* NearX-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D84DECDFB2C531BDDE4D061EAFDDF80D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A30A2FD47DC32888F2DFFCBB89ACE /* Constants.swift */; };
+		EAFD74B1D2AB3B2FCF12EEC0116488A8 /* Geofence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B89C6476F6A82CA7059B0AD8C4C980 /* Geofence.swift */; };
+		F978FCC9A05BB1F835BC7D8BA9B50086 /* NearX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7050543D74140355D4841D7BBFDB6124 /* NearX-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,28 +29,26 @@
 
 /* Begin PBXFileReference section */
 		0108A5F185B3C8A37DC8E78F5CA153D9 /* Pods-Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		049E8F7F6BBC55501A49521E87423311 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		0A46E86B1BF65A1123C0993261F110C3 /* Pods-NearX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NearX-umbrella.h"; sourceTree = "<group>"; };
-		112FBB7D3638E323F308ABD56DE65381 /* NearX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NearX-dummy.m"; sourceTree = "<group>"; };
+		246A30A2FD47DC32888F2DFFCBB89ACE /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = NearX/Constants.swift; sourceTree = "<group>"; };
 		28C7CFA754B92660A49BA14A6F869F74 /* Pods-Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Demo-dummy.m"; sourceTree = "<group>"; };
-		2A6476C6F857107F063E01BD1C23F279 /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		29B88BD96823123AC6114BC021C133CB /* NearX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = NearX.modulemap; sourceTree = "<group>"; };
 		4359BCB912760D5FC6E17EA226615AD8 /* Pods-Demo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Demo.modulemap"; sourceTree = "<group>"; };
+		48C1AD04EDDFA502AFD4BC7C863C1426 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		48E27748E0FFDD3D4F9799251DAF2ECD /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		4DF627DBDC8E6891A814FD97DBBAEA32 /* Geofence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Geofence.swift; sourceTree = "<group>"; };
-		5098006E042D98CB19C71E9921105152 /* NearX.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = NearX.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		4D8B8BDD6843A9968FE1CC45F3B1ED9F /* NearX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NearX-umbrella.h"; sourceTree = "<group>"; };
+		64F9660152929EBAF3C1BBDDD5340551 /* NearX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NearX.xcconfig; sourceTree = "<group>"; };
 		6A5A20A2CA969264A7F9DE44AB57DD11 /* Pods-Demo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Demo-umbrella.h"; sourceTree = "<group>"; };
+		7050543D74140355D4841D7BBFDB6124 /* NearX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NearX-dummy.m"; sourceTree = "<group>"; };
 		72E70B62D6EC6EABEBA7EC2421BBBFF2 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		8628B9E7EAE146CD7DFA0C3D4AC35917 /* NearX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = NearX.modulemap; sourceTree = "<group>"; };
-		9880899A3D1F400B59AF666CEDAB6EBC /* NearX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NearX-umbrella.h"; sourceTree = "<group>"; };
+		8B5A846101E4A5B346D7E598557C98FE /* GeofenceUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeofenceUtils.swift; path = NearX/GeofenceUtils.swift; sourceTree = "<group>"; };
+		97A507DE016491AA907E738424297ED6 /* NearX.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = NearX.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9FE5CADECC1C196A71F7AAD63A8F12DD /* GeofenceUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GeofenceUtils.swift; sourceTree = "<group>"; };
 		A27A9AF3739E3EBE01A4E43BDA008703 /* libNearX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libNearX.a; path = libNearX.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C29E647D090D3348B8300873BB27FF8D /* NearX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NearX-prefix.pch"; sourceTree = "<group>"; };
+		C326874871668B2DA1F6F29716A7D9D0 /* NearX.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NearX.h; path = NearX/NearX.h; sourceTree = "<group>"; };
 		C694DE63ED5EAB66E3CA6D184271692B /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Demo.a"; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF06964A636EC83911443BFDD92350B9 /* Pods-Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Demo-acknowledgements.plist"; sourceTree = "<group>"; };
-		D823A6DCA4280D925AC4E64275D5FD69 /* NearX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NearX.xcconfig; sourceTree = "<group>"; };
-		DA5A172AC7A5CFA47D981C0E910554C6 /* Pods-NearX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NearX-dummy.m"; sourceTree = "<group>"; };
-		F4E94A4821213ECBF080CA1AB0C6D7EF /* NearX.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NearX.h; sourceTree = "<group>"; };
+		E8B89C6476F6A82CA7059B0AD8C4C980 /* Geofence.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Geofence.swift; path = NearX/Geofence.swift; sourceTree = "<group>"; };
+		FAECCD020D7B3B65D7F27923A987F3E8 /* NearX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NearX-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +59,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC2CAC386C1C2BEDB69042EAE8B2B2AD /* Frameworks */ = {
+		AEEC77B855FF74F243CB63F8103EE7ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -73,67 +69,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		129C490A9617E29C7F1B0DED4FAF234C /* Support Files */ = {
+		444ED8B728B3F137BE6FBB72E2C5750F /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8628B9E7EAE146CD7DFA0C3D4AC35917 /* NearX.modulemap */,
-				D823A6DCA4280D925AC4E64275D5FD69 /* NearX.xcconfig */,
-				112FBB7D3638E323F308ABD56DE65381 /* NearX-dummy.m */,
-				C29E647D090D3348B8300873BB27FF8D /* NearX-prefix.pch */,
-				9880899A3D1F400B59AF666CEDAB6EBC /* NearX-umbrella.h */,
+				9F3A06433CBDBFAF32527691578993B1 /* NearX */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		9DB7410E60D217A7C163BFC293B40776 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				29B88BD96823123AC6114BC021C133CB /* NearX.modulemap */,
+				64F9660152929EBAF3C1BBDDD5340551 /* NearX.xcconfig */,
+				7050543D74140355D4841D7BBFDB6124 /* NearX-dummy.m */,
+				FAECCD020D7B3B65D7F27923A987F3E8 /* NearX-prefix.pch */,
+				4D8B8BDD6843A9968FE1CC45F3B1ED9F /* NearX-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Demo/Pods/Target Support Files/NearX";
 			sourceTree = "<group>";
 		};
-		2E91A7BEE1208A7E135119935D67F8C5 /* NearX */ = {
+		9F3A06433CBDBFAF32527691578993B1 /* NearX */ = {
 			isa = PBXGroup;
 			children = (
-				7AAB2E186EE8F77E0370D5260E5ED9C2 /* NearX */,
-				BE72E78576ED22B98E1006C1702111A5 /* Pod */,
-				3F7937FCBFF467C4F798DC1D051A47FA /* Pods */,
-				129C490A9617E29C7F1B0DED4FAF234C /* Support Files */,
+				246A30A2FD47DC32888F2DFFCBB89ACE /* Constants.swift */,
+				E8B89C6476F6A82CA7059B0AD8C4C980 /* Geofence.swift */,
+				8B5A846101E4A5B346D7E598557C98FE /* GeofenceUtils.swift */,
+				C326874871668B2DA1F6F29716A7D9D0 /* NearX.h */,
+				C16D2D64B26BAE373014738D2092CD66 /* Pod */,
+				9DB7410E60D217A7C163BFC293B40776 /* Support Files */,
 			);
 			name = NearX;
 			path = ../../NearX;
 			sourceTree = "<group>";
 		};
-		3F7937FCBFF467C4F798DC1D051A47FA /* Pods */ = {
+		C16D2D64B26BAE373014738D2092CD66 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				D9D1BFBE3A4BC222DB84CCDB5B0393B4 /* Target Support Files */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		7AAB2E186EE8F77E0370D5260E5ED9C2 /* NearX */ = {
-			isa = PBXGroup;
-			children = (
-				2A6476C6F857107F063E01BD1C23F279 /* Constants.swift */,
-				4DF627DBDC8E6891A814FD97DBBAEA32 /* Geofence.swift */,
-				9FE5CADECC1C196A71F7AAD63A8F12DD /* GeofenceUtils.swift */,
-				F4E94A4821213ECBF080CA1AB0C6D7EF /* NearX.h */,
-			);
-			name = NearX;
-			path = NearX;
-			sourceTree = "<group>";
-		};
-		BE69F0268B06A8CB3D09855289F12EB2 /* Pods-NearX */ = {
-			isa = PBXGroup;
-			children = (
-				DA5A172AC7A5CFA47D981C0E910554C6 /* Pods-NearX-dummy.m */,
-				0A46E86B1BF65A1123C0993261F110C3 /* Pods-NearX-umbrella.h */,
-			);
-			name = "Pods-NearX";
-			path = "Pods-NearX";
-			sourceTree = "<group>";
-		};
-		BE72E78576ED22B98E1006C1702111A5 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				049E8F7F6BBC55501A49521E87423311 /* LICENSE */,
-				5098006E042D98CB19C71E9921105152 /* NearX.podspec */,
+				48C1AD04EDDFA502AFD4BC7C863C1426 /* LICENSE */,
+				97A507DE016491AA907E738424297ED6 /* NearX.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -157,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				DDED6787515C0DB7693593BCE97F0555 /* Development Pods */,
+				444ED8B728B3F137BE6FBB72E2C5750F /* Development Pods */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				EF086A3C1F5DBD82C72EDC86CC0EC5FF /* Products */,
 				E1C0A7222F54A7B2C69FAE3C412C343C /* Targets Support Files */,
@@ -169,23 +144,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D9D1BFBE3A4BC222DB84CCDB5B0393B4 /* Target Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				BE69F0268B06A8CB3D09855289F12EB2 /* Pods-NearX */,
-			);
-			name = "Target Support Files";
-			path = "Target Support Files";
-			sourceTree = "<group>";
-		};
-		DDED6787515C0DB7693593BCE97F0555 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2E91A7BEE1208A7E135119935D67F8C5 /* NearX */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		E1C0A7222F54A7B2C69FAE3C412C343C /* Targets Support Files */ = {
@@ -216,13 +174,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E398D20F73E7C72FCF74B2CB363C94D4 /* Headers */ = {
+		AC7C089FF5719474F2B5CE82F575407D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8FFB2CAA53E83D4FCFDA790D43FA373 /* NearX-umbrella.h in Headers */,
-				77F3DBEF97BDFD478B8370A6F28B2041 /* NearX.h in Headers */,
-				6FFC1E23DAB892692B4488884DCE1B10 /* Pods-NearX-umbrella.h in Headers */,
+				D3AAF0C6CDDC2BE47F3AFAFE2E292691 /* NearX-umbrella.h in Headers */,
+				D2894E5FF6C597074D1937D6267D13D7 /* NearX.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,12 +206,12 @@
 		};
 		7CF3B593281B25A3E13BADE726AB4A18 /* NearX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7FE705BFBE3F7E97FD9EE1C17F458FFF /* Build configuration list for PBXNativeTarget "NearX" */;
+			buildConfigurationList = 9BDAE1A2C84B2C22EEA10E4834CE964F /* Build configuration list for PBXNativeTarget "NearX" */;
 			buildPhases = (
-				E398D20F73E7C72FCF74B2CB363C94D4 /* Headers */,
-				5FD4FCECF2F6747FC8787547E7964767 /* Sources */,
-				EC2CAC386C1C2BEDB69042EAE8B2B2AD /* Frameworks */,
-				40B09F89BDD366E247685ED9943FF81C /* Copy generated compatibility header */,
+				AC7C089FF5719474F2B5CE82F575407D /* Headers */,
+				960C531F9300694A50E7A85719ED90C8 /* Sources */,
+				AEEC77B855FF74F243CB63F8103EE7ED /* Frameworks */,
+				5064B3C4D78C1C8B900DBA8966D54288 /* Copy generated compatibility header */,
 			);
 			buildRules = (
 			);
@@ -294,7 +251,7 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		40B09F89BDD366E247685ED9943FF81C /* Copy generated compatibility header */ = {
+		5064B3C4D78C1C8B900DBA8966D54288 /* Copy generated compatibility header */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,15 +278,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5FD4FCECF2F6747FC8787547E7964767 /* Sources */ = {
+		960C531F9300694A50E7A85719ED90C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8167AAC5614B284C06B31FF808F8ECA3 /* Constants.swift in Sources */,
-				D13E874FD991AC7722ABD19B93DD551C /* Geofence.swift in Sources */,
-				B027DDAF685C04868287E9CAFF3A7CDA /* GeofenceUtils.swift in Sources */,
-				EF7511243EB38EC3806C0E6375ADCF8F /* NearX-dummy.m in Sources */,
-				91620D7F372BF8F979FF99509C43624B /* Pods-NearX-dummy.m in Sources */,
+				D84DECDFB2C531BDDE4D061EAFDDF80D /* Constants.swift in Sources */,
+				EAFD74B1D2AB3B2FCF12EEC0116488A8 /* Geofence.swift in Sources */,
+				282CF8307248850445D0DB362A68EC37 /* GeofenceUtils.swift in Sources */,
+				F978FCC9A05BB1F835BC7D8BA9B50086 /* NearX-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,9 +369,9 @@
 			};
 			name = Release;
 		};
-		7679C2D7594DA44A522F2C9656368B8A /* Debug */ = {
+		91A8E9910ABAC0E111FF68EDB7EFF33C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D823A6DCA4280D925AC4E64275D5FD69 /* NearX.xcconfig */;
+			baseConfigurationReference = 64F9660152929EBAF3C1BBDDD5340551 /* NearX.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -436,8 +392,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		B4A9889B3793ECEF240F98F0483AB0EF /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -550,9 +507,9 @@
 			};
 			name = Debug;
 		};
-		EFFBE704315A0409153F47074EC37110 /* Release */ = {
+		DE915C217CDD808853FCEEA7493229EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D823A6DCA4280D925AC4E64275D5FD69 /* NearX.xcconfig */;
+			baseConfigurationReference = 64F9660152929EBAF3C1BBDDD5340551 /* NearX.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -573,9 +530,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -589,11 +545,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7FE705BFBE3F7E97FD9EE1C17F458FFF /* Build configuration list for PBXNativeTarget "NearX" */ = {
+		9BDAE1A2C84B2C22EEA10E4834CE964F /* Build configuration list for PBXNativeTarget "NearX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7679C2D7594DA44A522F2C9656368B8A /* Debug */,
-				EFFBE704315A0409153F47074EC37110 /* Release */,
+				DE915C217CDD808853FCEEA7493229EF /* Debug */,
+				91A8E9910ABAC0E111FF68EDB7EFF33C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,5 +1,5 @@
 PODS:
-  - NearX (1.0.0)
+  - NearX (1.0.7)
 
 DEPENDENCIES:
   - NearX (from `../NearX`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../NearX"
 
 SPEC CHECKSUMS:
-  NearX: e9c7e2c3d978b0c354ee05d1860c71c44cf8afa0
+  NearX: da1d41abf914a6a0b689eb1fd98751cac1f5cd4b
 
 PODFILE CHECKSUM: 1c892b6976fc50e0836014eeae227d33133eba28
 
