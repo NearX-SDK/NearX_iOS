@@ -66,8 +66,8 @@ public class Geofence:NSObject,CLLocationManagerDelegate{
             "latitude": "\(coord.latitude)",
             "longitude": "\(coord.longitude)"
         ]
-        let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
-        let getgeofenceURL = Constants.GEOFENCE_URL +
+        let authKey = UserDefaults.standard.string(forKey: Cred.PreferencesKeys.AUTH_KEY)!
+        let getgeofenceURL = Cred.GEOFENCE_URL +
             "latitude=\(location["latitude"]!)&longitude=\(location["longitude"]!)&within=1000000&limit=20"
         
         let session = URLSession.shared

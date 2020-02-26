@@ -1,14 +1,15 @@
 //
-//  Constants.swift
+//  Cred.swift
 //  NearX
 //
-//  Created by Kushagra on 05/02/20.
+//  Created by Kushagra on 26/02/20.
 //  Copyright © 2020 First Walkin Technologies. All rights reserved.
 //
 
+
 import Foundation
 
-struct Constants {
+struct Cred {
     
     static let NEARX_URL = "https://dev-api.getwalkin.in/nearx/consumer/"
     

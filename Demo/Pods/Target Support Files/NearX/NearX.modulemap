@@ -1,6 +1,0 @@
-module NearX {
-  umbrella header "NearX-umbrella.h"
-
-  export *
-  module * { export * }
-}

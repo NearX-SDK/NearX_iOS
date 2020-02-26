@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NearX"
-  spec.version      = "1.0.8"
+  spec.version      = "1.0.9"
   spec.summary      = "Geolocation service based library"
   spec.description  = "Walkin's product to integrate with your apps for getting location based services for retail marketplace."
   spec.homepage     = "https://github.com/NearX-SDK/NearX_iOS.git"
@@ -55,8 +55,9 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "NearX","**/*.{swift,h,m}"
-  # spec.exclude_files = "Classes/Exclude"
+  spec.source_files  = "NearX","**/*.{swift}"
+  # spec.exclude_files = "NearX","**/NearX-umbrella.h"
+  # spec.exclude_files = "NearX","**/*.plist"
 
   # spec.public_header_files = "Classes/**/*.h"
 

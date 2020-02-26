@@ -17,22 +17,22 @@ public class GeofenceUtils{
     // Add Provided credentials from user on UserDefaults
     
     public static func setName(name:String){
-        UserDefaults.standard.set(name,forKey:Constants.PreferencesKeys.NAME)
+        UserDefaults.standard.set(name,forKey:Cred.PreferencesKeys.NAME)
     }
     
     public static func setMobileNumber(mobileNumber:String){
-        UserDefaults.standard.set(mobileNumber,forKey:Constants.PreferencesKeys.MOBILE_NUMBER)
+        UserDefaults.standard.set(mobileNumber,forKey:Cred.PreferencesKeys.MOBILE_NUMBER)
     }
     
     public static func setAuthKey(authKey:String){
-        UserDefaults.standard.set(authKey,forKey:Constants.PreferencesKeys.AUTH_KEY)
+        UserDefaults.standard.set(authKey,forKey:Cred.PreferencesKeys.AUTH_KEY)
     }
     
     public static func sendGeofenceEvent(eventType:String,locationName:String){
         
                 print(" ---  sendGeofenceEvent ---")
-                let authKey = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.AUTH_KEY)!
-                let mobileNumber = UserDefaults.standard.string(forKey: Constants.PreferencesKeys.MOBILE_NUMBER)!
+                let authKey = UserDefaults.standard.string(forKey: Cred.PreferencesKeys.AUTH_KEY)!
+                let mobileNumber = UserDefaults.standard.string(forKey: Cred.PreferencesKeys.MOBILE_NUMBER)!
 
                 let eventData = [
                     "eventType":eventType,
@@ -59,7 +59,7 @@ public class GeofenceUtils{
                         
                         let requestData = try! JSONSerialization.data(withJSONObject: payload, options: [])
                         let session = URLSession.shared
-                        let url = URL(string: Constants.EVENT_URL)!
+                        let url = URL(string: Cred.EVENT_URL)!
                         var request = URLRequest(url: url)
                         request.httpMethod = "POST"
                         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
